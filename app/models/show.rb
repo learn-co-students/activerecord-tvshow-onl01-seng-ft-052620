@@ -1,32 +1,39 @@
+require 'pry'
+
 class Show < ActiveRecord::Base
 
   def self.highest_rating
-    Show.order(rating: :desc).first
+    Show.maximum("rating")
   end
 
-  def most_popular_show
-    high = highest_rating
-    Show.where()
+  def self.most_popular_show
+    highest = highest_rating
+    most = Show.where(rating: highest)[0]
+    most
   end
 
-  def lowest_rating
-
+  def self.lowest_rating
+    Show.minimum("rating")
   end
 
-  def least_popular_show
-
+  def self.least_popular_show
+    lowest = lowest_rating
+    least = Show.where(rating: lowest)[0]
+    least
   end
 
-  def ratings_sum
-
+  def self.ratings_sum
+    Show.sum("rating")
   end
 
-  def popular_shows
-
+  def self.popular_shows
+    shows = Show.where("rating > 5")
+    shows
   end
 
-  def shows_by_alphabetical_order
-
+  def self.shows_by_alphabetical_order
+    shows = Show.order(:name)
+    shows
   end
 
 end
