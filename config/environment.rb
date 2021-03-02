@@ -1,6 +1,13 @@
 require "bundler/setup"
 require 'yaml'
 require 'active_record'
+require 'ostruct'
+require 'date'
+require 'pry'
+
+require 'bundler/setup'
+
+require_relative "../app/models/show.rb"
 
 Bundler.require
 
